@@ -22,16 +22,13 @@ public class Game {
         players.add(p4);
         turnCount = 0;
     }
-    public void getNumberOfPlayers() {
-
-    }
     public void getDieInfo() {
         System.out.println("Number of Sides:");
         System.out.print(gameDie.getSides());
         System.out.println("Seed:");
         System.out.print(gameDie.getSeed());
     }
-    public void game1() {
+    public Player game1() {
         Player A = players.get(0);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
@@ -42,8 +39,9 @@ public class Game {
             turnCount++;
         }
         System.out.println("Player " + A.getName() + " won in " + turnCount + " turns with a score of " + A.getScore() + ".");
+        return A;
     }
-    public void game2() {
+    public Player game2() {
         Player A = players.get(0);
         Player B = players.get(1);
         DoublyLinkedList gameBoard = playSpace.getDLL();
@@ -62,7 +60,7 @@ public class Game {
                     turnCount++;
                     if(A.checkWin()) {
                         System.out.println("Player A won");
-                        break;
+                        return A;
                     }
                 }
                 else{
@@ -83,7 +81,7 @@ public class Game {
                     turnCount++;
                     if(B.checkWin()) {
                         System.out.println("Player B Won");
-                        break;
+                        return B;
                     }
                 }
                 else {
@@ -94,7 +92,7 @@ public class Game {
             }
         }
     }
-    private void game3() {
+    private Player game3() {
         Player A = players.get(0);
         Player B = players.get(1);
         Player C = players.get(2);
@@ -116,7 +114,7 @@ public class Game {
                     turnCount++;
                     if(A.checkWin()) {
                         System.out.println("Player A won");
-                        break;
+                        return A;
                     }
                 }
                 else{
@@ -139,7 +137,7 @@ public class Game {
                     turnCount++;
                     if(B.checkWin()) {
                         System.out.println("Player B Won");
-                        break;
+                        return B;
                     }
                 }
                 else {
@@ -162,7 +160,7 @@ public class Game {
                     turnCount++;
                     if(C.checkWin()) {
                         System.out.println("Player C Won");
-                        break;
+                        return C;
                     }
                 }
                 else {
@@ -173,7 +171,7 @@ public class Game {
             }
         }
     }
-    private void game4() {
+    private Player game4() {
         Player A = players.get(0);
         Player B = players.get(1);
         Player C = players.get(2);
@@ -196,7 +194,7 @@ public class Game {
                     turnCount++;
                     if(A.checkWin()) {
                         System.out.println("Player A won");
-                        break;
+                        return A;
                     }
                 }
                 else{
@@ -219,7 +217,7 @@ public class Game {
                     turnCount++;
                     if(B.checkWin()) {
                         System.out.println("Player B Won");
-                        break;
+                        return B;
                     }
                 }
                 else {
@@ -242,7 +240,7 @@ public class Game {
                     turnCount++;
                     if(C.checkWin()) {
                         System.out.println("Player C Won");
-                        break;
+                        return C;
                     }
                 }
                 else {
@@ -251,6 +249,7 @@ public class Game {
                     turnCount++;
                 }
             }
+            //TODO Add fourth player logic
         }
     }
     public void gameWithPlayers(int numOfPlayers) {
