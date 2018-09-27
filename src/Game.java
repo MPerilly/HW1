@@ -91,6 +91,7 @@ public class Game {
                 }
             }
         }
+        return null;
     }
     private Player game3() {
         Player A = players.get(0);
@@ -170,6 +171,7 @@ public class Game {
                 }
             }
         }
+        return null;
     }
     private Player game4() {
         Player A = players.get(0);
@@ -251,6 +253,7 @@ public class Game {
             }
             //TODO Add fourth player logic
         }
+        return null;
     }
     public void gameWithPlayers(int numOfPlayers) {
         if (numOfPlayers == 1){
