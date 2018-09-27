@@ -2,10 +2,12 @@ public class Player {
     private int spacesFromStart;
     private int score;
     private boolean win;
-    public Player() {
+    private String name;
+    public Player(String n) {
         this.spacesFromStart = 0;
         this.score = 0;
         this.win = false;
+        this.name = n;
     }
     //Accessor Methods
     public int getSpacesFromStart() {
@@ -18,6 +20,9 @@ public class Player {
     public String getPrintInfo(){
         String printable = "Score: " + this.score + ", Position: " + this.spacesFromStart;
         return printable;
+    }
+    public String getName() {
+        return this.name;
     }
     //Player Functions
     public void addSpacesFromStart(int move) {

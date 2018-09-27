@@ -11,10 +11,10 @@ public class Game {
     public Game() {
         playSpace = new Board();
         gameDie = new Die();
-        p1 = new Player();
-        p2 = new Player();
-        p3 = new Player();
-        p4 = new Player();
+        p1 = new Player("A");
+        p2 = new Player("B");
+        p3 = new Player("C");
+        p4 = new Player("D");
         players = new ArrayList<>();
         players.add(p1);
         players.add(p2);
@@ -31,8 +31,8 @@ public class Game {
         System.out.println("Seed:");
         System.out.print(gameDie.getSeed());
     }
-    private void game1() {
-        Player A = players.get(1);
+    public void game1() {
+        Player A = players.get(0);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
         while(!A.checkWin()){
@@ -41,11 +41,11 @@ public class Game {
             A.updateScore(playSpace);
             turnCount++;
         }
-        System.out.println("Player won in " + turnCount + " turns with a score of " + A.getScore() + ".");
+        System.out.println("Player " + A.getName() + " won in " + turnCount + " turns with a score of " + A.getScore() + ".");
     }
     public void game2() {
-        Player A = players.get(1);
-        Player B = players.get(2);
+        Player A = players.get(0);
+        Player B = players.get(1);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
         while(!A.checkWin() && !B.checkWin()) {
@@ -95,9 +95,9 @@ public class Game {
         }
     }
     private void game3() {
-        Player A = players.get(1);
-        Player B = players.get(2);
-        Player C = players.get(3);
+        Player A = players.get(0);
+        Player B = players.get(1);
+        Player C = players.get(2);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
         while(!A.checkWin() && !B.checkWin()) {
@@ -174,10 +174,10 @@ public class Game {
         }
     }
     private void game4() {
-        Player A = players.get(1);
-        Player B = players.get(2);
-        Player C = players.get(3);
-        Player D = players.get(4);
+        Player A = players.get(0);
+        Player B = players.get(1);
+        Player C = players.get(2);
+        Player D = players.get(3);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
         while(!A.checkWin() && !B.checkWin()) {
