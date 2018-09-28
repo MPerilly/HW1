@@ -30,7 +30,6 @@ public class Game {
     }
     public Player game1() {
         Player A = players.get(0);
-        DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
         while(!A.checkWin()){
             int criticalValue = gameDie.roll();

@@ -27,12 +27,12 @@ public class Board {
                 }
                 else if (mover == this.spaces.getTrailer()) {
                     System.out.print(" - End");
+                    System.out.println("Winner: Player " + "");
                     break;
                 }
                 else {
                     if (mover.getOcc()){
-
-                        System.out.print("");
+                        System.out.print("{ " + mover.getOccupant().getName() + " } - ");
                     }
                     else {
                         System.out.print("{ " + mover.getElement() + " } - ");
