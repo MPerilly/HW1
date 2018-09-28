@@ -26,7 +26,12 @@ public class Player {
     }
     //Player Functions
     public void addSpacesFromStart(int move) {
-        this.spacesFromStart += move;
+        if (this.spacesFromStart < 25 && (this.spacesFromStart + move) <= 25) {
+            this.spacesFromStart += move;
+        }
+        else if ((this.spacesFromStart + move) > 25){
+            this.spacesFromStart = 25;
+        }
     }
     public void sendBack() {
         if (this.spacesFromStart >= 7) {
