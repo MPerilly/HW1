@@ -18,6 +18,7 @@ public class Board {
     //Functions
     public void printBoard(Player winner) {
         DoublyLinkedList.Node mover = this.spaces.getHeader();
+        String winName = winner.getName();
         for(int i = 0; i < 5; i++){
             System.out.println();
             for(int j = 0; j < 5; j++){
@@ -27,10 +28,7 @@ public class Board {
                     mover = mover.getNext();
                     j--;
                 }
-                //TODO fix logic in if statement, end does not print w/o skipping final value
-                else if (mover.getNext() == this.spaces.getTrailer()) {
-                    System.out.print(" - End");
-                    System.out.println("Winner: Player " + winner);
+                else if (mover == this.spaces.getTrailer()) {
                     break;
                 }
                 else {
@@ -48,5 +46,7 @@ public class Board {
                 break;
             }
         }
+        System.out.print("End ");
+        System.out.println("Winner: Player " + winName);
     }
 }
