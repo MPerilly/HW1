@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 public class Main {
     public static void main(String args[]) {
-        Game g = new Game();
-        Player win = g.game2();
-        g.getBoard().printBoard(win);
+        GameFacilitator g = new GameFacilitator(3);
+        g.games1000();
+        ArrayList<float[]> stats = g.calculateFinalStats();
     }
 }

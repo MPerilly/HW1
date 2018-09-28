@@ -33,6 +33,14 @@ public class Game {
         return this.playSpace;
     }
     public int getTurnCount() {return this.turnCount;}
+    public int[] getPlayerInfo() {
+        int[] info = new int[4];
+        for(int i = 0; i < 4; i++){
+            int playerMoves = this.players.get(i).getMoves();
+            info[i] = playerMoves;
+        }
+        return info;
+    }
     //Functions
     public Player game1() {
         Player A = players.get(0);
@@ -43,7 +51,6 @@ public class Game {
             A.updateScore(playSpace);
             turnCount++;
         }
-        System.out.println("Player " + A.getName() + " won in " + turnCount + " turns with a score of " + A.getScore() + ".");
         return A;
     }
     public Player game2() {
@@ -51,7 +58,7 @@ public class Game {
         Player B = players.get(1);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
-        while(!A.checkWin() && !B.checkWin()) {
+        while(!A.checkWin() || !B.checkWin()) {
             int criticalValue = gameDie.roll();
             if(((turnCount + 2) % 2) == 0 ){
                 gameBoard.getNodeAt(A.getSpacesFromStart()).setOcc(false);
@@ -64,7 +71,6 @@ public class Game {
                     A.updateScore(playSpace);
                     turnCount++;
                     if(A.checkWin()) {
-                        System.out.println("Player A won");
                         return A;
                     }
                 }
@@ -85,7 +91,6 @@ public class Game {
                     B.updateScore(playSpace);
                     turnCount++;
                     if(B.checkWin()) {
-                        System.out.println("Player B Won");
                         return B;
                     }
                 }
@@ -104,7 +109,7 @@ public class Game {
         Player C = players.get(2);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
-        while(!A.checkWin() && !B.checkWin()) {
+        while(!A.checkWin() || !B.checkWin() || !C.checkWin()) {
             int criticalValue = gameDie.roll();
             if(((turnCount + 3) % 3) == 0 ){
                 System.out.println("Player A Moves. Info from previous turn:");
