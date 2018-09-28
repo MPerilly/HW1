@@ -28,6 +28,9 @@ public class Game {
         System.out.println("Seed:");
         System.out.print(gameDie.getSeed());
     }
+    public Board getBoard(){
+        return this.playSpace;
+    }
     public Player game1() {
         Player A = players.get(0);
         this.turnCount = 0;
