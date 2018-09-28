@@ -7,12 +7,19 @@ public class Die {
     Random n;
     public Die(int s, int sd) {
         this.sides = s;
-        int randSeed = sd;
+        this.randSeed = sd;
+        this.n = new Random(randSeed);
+        this.rollCount = 0;
+    }
+    public Die(int s) {
+        this.sides = s;
+        Random seedGen = new Random();
+        this.randSeed = seedGen.nextInt(1000);
         this.n = new Random(randSeed);
         this.rollCount = 0;
     }
     public Die() {
-        this(6, 4);
+        this(6);
     }
     public int getSides() {
         return this.sides;
