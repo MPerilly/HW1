@@ -23,8 +23,7 @@ public class Board {
             System.out.println();
             for(int j = 0; j < 5; j++){
                 if(mover == this.spaces.getHeader()){
-                    System.out.print("Start - ");
-                    System.out.println();
+                    System.out.format("Start - %n");
                     mover = mover.getNext();
                     j--;
                 }
@@ -33,11 +32,17 @@ public class Board {
                 }
                 else {
                     if (mover.getOcc()){
-                        System.out.print("{ " + mover.getOccupant().getName() + " } - ");
-                        mover = mover.getNext();
+                        if(mover.getNext() == this.spaces.getTrailer()) {
+                            System.out.format("{ %2s } - ", mover.getElement());
+                            break;
+                        }
+                        else {
+                            System.out.format("{ %2s } - ", mover.getOccupant().getName());
+                            mover = mover.getNext();
+                        }
                     }
                     else {
-                        System.out.print("{ " + mover.getElement() + " } - ");
+                        System.out.format("{ %2s } - ", mover.getElement());
                         mover = mover.getNext();
                     }
                 }
@@ -46,7 +51,7 @@ public class Board {
                 break;
             }
         }
-        System.out.print("End ");
-        System.out.println("Winner: Player " + winName);
+        System.out.format(" %nEnd %n");
+        System.out.print("Winner: Player " + winName);
     }
 }
