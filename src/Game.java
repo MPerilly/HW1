@@ -257,19 +257,22 @@ public class Game {
         }
         return null;
     }
-    public void gameWithPlayers(int numOfPlayers) {
+    public Player gameWithPlayers(int numOfPlayers) {
         if (numOfPlayers == 1){
-            this.game1();
+            return this.game1();
         }
         else if (numOfPlayers == 2) {
-            this.game2();
+            return this.game2();
         }
         else if (numOfPlayers == 3) {
-            this.game3();
+            return this.game3();
         }
         else if (numOfPlayers == 4) {
-            this.game4();
+            return this.game4();
         }
+        return null;
     }
+    //TODO add game statistic gatherer
+    //TODO create method to play games 1000 times
 }
 
