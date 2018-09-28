@@ -22,6 +22,7 @@ public class Game {
         players.add(p4);
         turnCount = 0;
     }
+    //Accessor Methods
     public void getDieInfo() {
         System.out.println("Number of Sides:");
         System.out.print(gameDie.getSides());
@@ -31,6 +32,8 @@ public class Game {
     public Board getBoard(){
         return this.playSpace;
     }
+    public int getTurnCount() {return this.turnCount;}
+    //Functions
     public Player game1() {
         Player A = players.get(0);
         this.turnCount = 0;
