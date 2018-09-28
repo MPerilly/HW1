@@ -3,6 +3,7 @@ public class Main {
     public static void main(String args[]) {
         GameFacilitator g = new GameFacilitator(3);
         g.games1000();
+        //TODO fix calculate final stats method for multiple players
         ArrayList<float[]> stats = g.calculateFinalStats();
     }
 }
