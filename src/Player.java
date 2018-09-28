@@ -1,6 +1,7 @@
 public class Player {
     private int spacesFromStart;
     private int score;
+    private int moves;
     private boolean win;
     private String name;
     public Player(String n) {
@@ -8,6 +9,7 @@ public class Player {
         this.score = 0;
         this.win = false;
         this.name = n;
+        this.moves = 0;
     }
     //Accessor Methods
     public int getSpacesFromStart() {
@@ -24,13 +26,16 @@ public class Player {
     public String getName() {
         return this.name;
     }
+    public int getMoves() {return this.moves;}
     //Player Functions
     public void addSpacesFromStart(int move) {
         if (this.spacesFromStart < 25 && (this.spacesFromStart + move) <= 25) {
             this.spacesFromStart += move;
+            this.moves++;
         }
         else if ((this.spacesFromStart + move) > 25){
             this.spacesFromStart = 25;
+            this.moves++;
         }
     }
     public void sendBack() {
