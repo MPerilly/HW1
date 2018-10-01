@@ -10,29 +10,43 @@ public class Main {
                                 ArrayList<float[]> threePlayer,
                                 ArrayList<float[]> fourPlayer) {
         ArrayList<float[]> statTable = null;
-        String line = "_________________________";
+        String line = "________________________";
         String divider = "|";
         String header = "Players in Game: ";
         String cats = "WR/AvgMoves/AvgTurns";
-        System.out.format("%2s", header);
-        System.out.format("%2s", divider);
+        String players = null;
+        System.out.format("%-27s", header);
+        System.out.format(divider);
         for (int i = 0; i < 4; i++) {
-
+            System.out.format("%21s", cats);
+            System.out.format("%1$2s", divider);
         }
-        for (int i = 0; i < 4; i++) {
+        System.out.println();
+        for (int i = 0; i < 5; i++){
+            System.out.format("%1s", line);
+        }
+        for (int i = 0; i < 4; i++){
             switch (i) {
                 case 0: statTable = onePlayer;
-                    break;
+                        players = "A";
+                        break;
                 case 1: statTable = twoPlayer;
-                    break;
+                        players = "A, B";
+                        break;
                 case 2: statTable = threePlayer;
-                    break;
+                        players = "A, B, C";
+                        break;
                 case 3: statTable = fourPlayer;
-                    break;
+                        players = "A, B, C, D";
+                        break;
             }
-            for (int j = 0; j <= i; j++){
-                float[] statData = statTable.get(j);
+            System.out.format("%20s", players);
+            System.out.format("%-44", divider);
+            for (float[] statList: statTable) {
+                System.out.format("%7f / %7f / %7f %1s", statList[0], statList[1], statList[2] divider);
             }
+            System.out.println();
         }
+
     }
 }
