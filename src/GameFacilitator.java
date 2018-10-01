@@ -22,6 +22,9 @@ public class GameFacilitator{
                     Board gameBoard = g.getBoard();
                     gameBoard.printBoard(winner);
                 }
+                else if (winner == null) {
+                    System.out.println("Error");
+                }
                 this.updateRawStats(g, winner);
             }
         }

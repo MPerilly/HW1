@@ -26,6 +26,9 @@ public class Player {
     public String getName() {
         return this.name;
     }
+    public boolean getWin() {
+        return this.win;
+    }
     public int getMoves() {return this.moves;}
     //Player Functions
     public void addSpacesFromStart(int move) {
@@ -42,6 +45,14 @@ public class Player {
         if (this.spacesFromStart >= 7) {
             this.spacesFromStart = this.spacesFromStart - 7;
         }
+        else if (spacesFromStart == 25) {
+            if(this.checkWin()) {
+                this.spacesFromStart = 25;
+            }
+            else {
+                this.spacesFromStart = 0;
+            }
+        }
         else {
             this.spacesFromStart = 0;
         }
@@ -56,15 +67,15 @@ public class Player {
     }
     public boolean checkWin() {
         if(this.score > 44 && this.spacesFromStart >= 25) {
-            win = true;
-            return win;
+            this.win = true;
+            return this.win;
         }
         else if (this.spacesFromStart <= 25) {
-            return win;
+            return this.win;
         }
         else {
             this.spacesFromStart = 0;
-            return win;
+            return this.win;
         }
     }
 }
