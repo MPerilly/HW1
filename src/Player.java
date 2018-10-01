@@ -70,11 +70,11 @@ public class Player {
             this.win = true;
             return this.win;
         }
-        else if (this.spacesFromStart <= 25) {
+        else if (this.spacesFromStart < 25) {
             return this.win;
         }
         else {
-            this.spacesFromStart = 0;
+            this.spacesFromStart = 1;
             return this.win;
         }
     }

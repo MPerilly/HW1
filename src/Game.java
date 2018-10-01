@@ -58,47 +58,60 @@ public class Game {
         Player B = players.get(1);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
-        while(!A.checkWin() || !B.checkWin()) {
+        while (!A.getWin() && !B.getWin()) {
             int criticalValue = gameDie.roll();
-            if(((turnCount + 2) % 2) == 0 ){
+            if (((turnCount + 2) % 2) == 0) {
                 gameBoard.getNodeAt(A.getSpacesFromStart()).setOcc(false);
                 gameBoard.getNodeAt(A.getSpacesFromStart()).removeOccupant();
                 A.addSpacesFromStart(criticalValue);
-                if(!gameBoard.getNodeAt(A.getSpacesFromStart()).getOcc()) {
+                if (!gameBoard.getNodeAt(A.getSpacesFromStart()).getOcc() && A.getSpacesFromStart() != 25) {
                     DoublyLinkedList.Node playerAZone = gameBoard.getNodeAt(A.getSpacesFromStart());
                     playerAZone.setOcc(true);
                     playerAZone.setOccupied(A);
                     A.updateScore(playSpace);
+                    A.checkWin();
                     turnCount++;
-                    if(A.checkWin()) {
+                } else if (A.getSpacesFromStart() == 25) {
+                    A.checkWin();
+                    if (A.checkWin()) {
                         return A;
                     }
-                }
-                else{
+                    turnCount++;
+                } else {
+                    A.checkWin();
                     A.sendBack();
                     A.updateScore(playSpace);
                     turnCount++;
                 }
-            }
-            else{
+            } else if (((turnCount + 2) % 2) == 1) {
                 gameBoard.getNodeAt(B.getSpacesFromStart()).setOcc(false);
                 gameBoard.getNodeAt(B.getSpacesFromStart()).removeOccupant();
                 B.addSpacesFromStart(criticalValue);
-                if(!gameBoard.getNodeAt(B.getSpacesFromStart()).getOcc()) {
+                if (!gameBoard.getNodeAt(B.getSpacesFromStart()).getOcc()) {
                     DoublyLinkedList.Node playerBZone = gameBoard.getNodeAt(B.getSpacesFromStart());
                     playerBZone.setOcc(true);
                     playerBZone.setOccupied(B);
                     B.updateScore(playSpace);
+                    B.checkWin();
                     turnCount++;
-                    if(B.checkWin()) {
+                } else if (B.getSpacesFromStart() == 25) {
+                    B.checkWin();
+                    if (B.checkWin()) {
                         return B;
                     }
-                }
-                else {
+                    turnCount++;
+                } else {
+                    B.checkWin();
                     B.sendBack();
                     B.updateScore(playSpace);
                     turnCount++;
                 }
+            }
+        }
+        for (int i = 0; i < 2; i++) {
+            Player check = players.get(i);
+            if (check.getWin()) {
+                return check;
             }
         }
         return null;
@@ -109,76 +122,83 @@ public class Game {
         Player C = players.get(2);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
-        while(!A.checkWin() || !B.checkWin() || !C.checkWin()) {
+        while (!A.getWin() && !B.getWin() && !C.getWin()) {
             int criticalValue = gameDie.roll();
-            if(((turnCount + 3) % 3) == 0 ){
-                System.out.println("Player A Moves. Info from previous turn:");
-                System.out.println(A.getPrintInfo());
+            if (((turnCount + 3) % 3) == 0) {
                 gameBoard.getNodeAt(A.getSpacesFromStart()).setOcc(false);
                 gameBoard.getNodeAt(A.getSpacesFromStart()).removeOccupant();
                 A.addSpacesFromStart(criticalValue);
-                if(!gameBoard.getNodeAt(A.getSpacesFromStart()).getOcc()) {
+                if (!gameBoard.getNodeAt(A.getSpacesFromStart()).getOcc() && A.getSpacesFromStart() != 25) {
                     DoublyLinkedList.Node playerAZone = gameBoard.getNodeAt(A.getSpacesFromStart());
                     playerAZone.setOcc(true);
                     playerAZone.setOccupied(A);
                     A.updateScore(playSpace);
+                    A.checkWin();
                     turnCount++;
-                    if(A.checkWin()) {
-                        System.out.println("Player A won");
+                } else if (A.getSpacesFromStart() == 25) {
+                    A.checkWin();
+                    if (A.checkWin()) {
                         return A;
                     }
-                }
-                else{
+                    turnCount++;
+                } else {
+                    A.checkWin();
                     A.sendBack();
                     A.updateScore(playSpace);
                     turnCount++;
                 }
-            }
-            else if (((turnCount + 3) % 3) == 1 ){
-                System.out.println("Player B Moves. Info from previous turn:");
-                System.out.println(B.getPrintInfo());
+            } else if (((turnCount + 3) % 3) == 1) {
                 gameBoard.getNodeAt(B.getSpacesFromStart()).setOcc(false);
                 gameBoard.getNodeAt(B.getSpacesFromStart()).removeOccupant();
                 B.addSpacesFromStart(criticalValue);
-                if(!gameBoard.getNodeAt(B.getSpacesFromStart()).getOcc()) {
+                if (!gameBoard.getNodeAt(B.getSpacesFromStart()).getOcc()) {
                     DoublyLinkedList.Node playerBZone = gameBoard.getNodeAt(B.getSpacesFromStart());
                     playerBZone.setOcc(true);
                     playerBZone.setOccupied(B);
                     B.updateScore(playSpace);
+                    B.checkWin();
                     turnCount++;
-                    if(B.checkWin()) {
-                        System.out.println("Player B Won");
+                } else if (B.getSpacesFromStart() == 25) {
+                    B.checkWin();
+                    if (B.checkWin()) {
                         return B;
                     }
-                }
-                else {
+                    turnCount++;
+                } else {
+                    B.checkWin();
                     B.sendBack();
                     B.updateScore(playSpace);
                     turnCount++;
                 }
-            }
-            else if (((turnCount + 3) % 3) == 2 ){
-                System.out.println("Player C Moves. Info from previous turn:");
-                System.out.println(C.getPrintInfo());
+            } else if (((turnCount + 3) % 3) == 2) {
                 gameBoard.getNodeAt(C.getSpacesFromStart()).setOcc(false);
                 gameBoard.getNodeAt(C.getSpacesFromStart()).removeOccupant();
                 C.addSpacesFromStart(criticalValue);
-                if(!gameBoard.getNodeAt(C.getSpacesFromStart()).getOcc()) {
+                if (!gameBoard.getNodeAt(C.getSpacesFromStart()).getOcc()) {
                     DoublyLinkedList.Node playerCZone = gameBoard.getNodeAt(C.getSpacesFromStart());
                     playerCZone.setOcc(true);
                     playerCZone.setOccupied(C);
                     C.updateScore(playSpace);
+                    C.checkWin();
                     turnCount++;
-                    if(C.checkWin()) {
-                        System.out.println("Player C Won");
+                } else if (C.getSpacesFromStart() == 25) {
+                    C.checkWin();
+                    if (C.checkWin()) {
                         return C;
                     }
-                }
-                else {
+                    turnCount++;
+                } else {
+                    C.checkWin();
                     C.sendBack();
                     C.updateScore(playSpace);
                     turnCount++;
                 }
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            Player check = players.get(i);
+            if (check.getWin()){
+                return check;
             }
         }
         return null;
@@ -190,11 +210,9 @@ public class Game {
         Player D = players.get(3);
         DoublyLinkedList gameBoard = playSpace.getDLL();
         this.turnCount = 0;
-        while(!A.checkWin() && !B.checkWin()) {
+        while(!A.getWin() && !B.getWin() && !C.getWin() && !D.getWin()) {
             int criticalValue = gameDie.roll();
             if(((turnCount + 4) % 4) == 0 ){
-                System.out.println("Player A Moves. Info from previous turn:");
-                System.out.println(A.getPrintInfo());
                 gameBoard.getNodeAt(A.getSpacesFromStart()).setOcc(false);
                 gameBoard.getNodeAt(A.getSpacesFromStart()).removeOccupant();
                 A.addSpacesFromStart(criticalValue);
@@ -203,6 +221,7 @@ public class Game {
                     playerAZone.setOcc(true);
                     playerAZone.setOccupied(A);
                     A.updateScore(playSpace);
+                    A.checkWin();
                     turnCount++;
                 }
                 else if (A.getSpacesFromStart() == 25) {
@@ -210,6 +229,7 @@ public class Game {
                     if(A.checkWin()){
                         return A;
                     }
+                    turnCount++;
                 }
                 else {
                     A.checkWin();
@@ -227,6 +247,7 @@ public class Game {
                     playerBZone.setOcc(true);
                     playerBZone.setOccupied(B);
                     B.updateScore(playSpace);
+                    B.checkWin();
                     turnCount++;
                 }
                 else if (B.getSpacesFromStart() == 25) {
@@ -234,6 +255,7 @@ public class Game {
                     if(B.checkWin()){
                         return B;
                     }
+                    turnCount++;
                 }
                 else {
                     B.checkWin();
@@ -251,6 +273,7 @@ public class Game {
                     playerCZone.setOcc(true);
                     playerCZone.setOccupied(C);
                     C.updateScore(playSpace);
+                    C.checkWin();
                     turnCount++;
                 }
                 else if (C.getSpacesFromStart() == 25) {
@@ -258,6 +281,7 @@ public class Game {
                     if(C.checkWin()){
                         return C;
                     }
+                    turnCount++;
                 }
                 else {
                     C.checkWin();
@@ -275,6 +299,7 @@ public class Game {
                     playerDZone.setOcc(true);
                     playerDZone.setOccupied(D);
                     D.updateScore(playSpace);
+                    D.checkWin();
                     turnCount++;
                 }
                 else if (D.getSpacesFromStart() == 25) {
@@ -282,6 +307,7 @@ public class Game {
                     if(D.checkWin()){
                         return D;
                     }
+                    turnCount++;
                 }
                 else {
                     D.checkWin();
