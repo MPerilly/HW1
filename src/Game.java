@@ -1,4 +1,12 @@
 import java.util.ArrayList;
+/*Game class fields:
+*   playSpace: a board instance where the game is played
+*   gameDie: a die instance used in the game
+*   players p1, p2, p3, p4: players used in different versions of the game (with one player, two, etc.)
+*   turnCount: the number of turns taken in a game, incremented after each player rolls the die.
+*   arrayList Players: an arrayList holding all instances of players (could have been a regular array, I was just
+*   looking for more practice in declaring arrayLists).
+*This class encapsulates all logic for single games played with different number of players.*/
 public class Game {
     private Board playSpace;
     private Die gameDie;
@@ -8,6 +16,15 @@ public class Game {
     private Player p4;
     private int turnCount;
     private ArrayList<Player> players;
+    /*Constructor functions:
+    *   Initializes:
+    *       playSpace: as a new instance of class Board.
+    *       gameDie: as a new instance of class Die.
+    *       p1, p2, p3, p4: as new instances of class Player with names A, B, C, and D respectively
+    *       players: as a new arrayList containing only instances of players, as well as adding the four previously
+    *       initialized players to the list for later access if need be.
+    *       turnCount: initialized to zero, the first turn occurring after the first roll of the die.
+    *       */
     public Game() {
         playSpace = new Board();
         gameDie = new Die();
@@ -22,7 +39,8 @@ public class Game {
         players.add(p4);
         turnCount = 0;
     }
-    //Accessor Methods
+    //Accessor Methods, mostly self explanatory
+    /*Depreciated method used during testing later phases of game logic. */
     public void getDieInfo() {
         System.out.println("Number of Sides:");
         System.out.print(gameDie.getSides());
@@ -33,6 +51,9 @@ public class Game {
         return this.playSpace;
     }
     public int getTurnCount() {return this.turnCount;}
+    /*getPlayerInfo is used for the final printout of statistics. The method iterates through the arrayList of players,
+    * gets the number of moves taken by each, and returns an array of values representing the moves taken by players
+    * in corresponding order. */
     public int[] getPlayerInfo() {
         int[] info = new int[4];
         for(int i = 0; i < 4; i++){

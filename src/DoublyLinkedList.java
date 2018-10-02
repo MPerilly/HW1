@@ -15,9 +15,9 @@ public class DoublyLinkedList<E> {
 
         /** A reference to the subsequent node in the list */
         private Node<E> next;            // reference to the subsequent node in the list
-
+        //Additional node element, true or false as to whether the space is occupied
         private boolean occupied;
-
+        //Additional node element, holds a reference to a player which occupies the space
         private Player occupant;
 
         /**
@@ -116,7 +116,7 @@ public class DoublyLinkedList<E> {
         if (isEmpty()) return null;
         return header.getNext().getElement();   // first element is beyond header
     }
-
+    //These methods return the nodes named in their headers
     public Node<E> getFirst(){
         return header.getNext();
     }
@@ -131,7 +131,7 @@ public class DoublyLinkedList<E> {
         if (isEmpty()) return null;
         return trailer.getPrev().getElement();    // last element is before trailer
     }
-
+    //Returns an element of a node at a given index (starting at header = 0)
     public E getElementAt(int index) {
         if (isEmpty()) return null;
         else {
@@ -142,7 +142,7 @@ public class DoublyLinkedList<E> {
             return check.getElement();
         }
     }
-
+    //Returns the node itself, not just the element, at a given index (header = 0)
     public Node<E> getNodeAt(int index) {
         if (isEmpty()) return null;
         else {
@@ -235,7 +235,8 @@ public class DoublyLinkedList<E> {
         sb.append(")");
         return sb.toString();
     }
-
+    //Depreciated, method was used in early iterations of the project but has been replaced with
+    //printBoard method in board class.
     public void printElements() {
         if(this.isEmpty() == true) {System.out.println("List is Empty");}
         else {
