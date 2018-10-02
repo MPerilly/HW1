@@ -1,11 +1,22 @@
 import java.util.ArrayList;
 public class Main {
     public static void main(String args[]) {
-        GameFacilitator g = new GameFacilitator(2);
-        g.games1000();
-        ArrayList<float[]> stats = g.calculateFinalStats();
+        GameFacilitator g1 = new GameFacilitator(1);
+        GameFacilitator g2 = new GameFacilitator(2);
+        GameFacilitator g3 = new GameFacilitator(3);
+        GameFacilitator g4 = new GameFacilitator(4);
+        g1.games1000();
+        ArrayList<float[]> onePlayerStats = g1.calculateFinalStats();
+        g2.games1000();
+        ArrayList<float[]> twoPlayerStats = g2.calculateFinalStats();
+        g3.games1000();
+        ArrayList<float[]> threePlayerStats = g3.calculateFinalStats();
+        g4.games1000();
+        ArrayList<float[]> fourPlayerStats = g4.calculateFinalStats();
+        printFinalStats(onePlayerStats, twoPlayerStats,
+                        threePlayerStats, fourPlayerStats);
     }
-    public void printFinalStats(ArrayList<float[]> onePlayer,
+    public static void printFinalStats(ArrayList<float[]> onePlayer,
                                 ArrayList<float[]> twoPlayer,
                                 ArrayList<float[]> threePlayer,
                                 ArrayList<float[]> fourPlayer) {
@@ -15,6 +26,7 @@ public class Main {
         String header = "Players in Game: ";
         String cats = "WR/AvgMoves/AvgTurns";
         String players = null;
+        System.out.println();
         System.out.format("%-27s", header);
         System.out.format(divider);
         for (int i = 0; i < 4; i++) {
@@ -40,12 +52,16 @@ public class Main {
                         players = "A, B, C, D";
                         break;
             }
+            System.out.println();
             System.out.format("%20s", players);
-            System.out.format("%-44", divider);
+            System.out.format("%8s", divider);
             for (float[] statList: statTable) {
-                System.out.format("%7f / %7f / %7f %1s", statList[0], statList[1], statList[2] divider);
+                System.out.format("%7.3f / %4.3g / %4.3g %1s", statList[0], statList[1], statList[2], divider);
             }
             System.out.println();
+            for (int j = 0; j < 5; j++){
+                System.out.format("%1s", line);
+            }
         }
 
     }
