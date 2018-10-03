@@ -1,18 +1,31 @@
+/*GameFacilitator fields:
+* g: Instance of game class, used to run games
+* rawStats: empty generic arrayList for storage of game statistics to be processed later
+* numOfPlayers: an integer specifying the number of players to play 1000 games with*/
 import java.util.ArrayList;
 public class GameFacilitator{
-    //TODO Class facilitates 1000 games, as well as generating statistics for games
-    int[] winCount;
     Game g;
     ArrayList<Object> rawStats;
     int numOfPlayers;
+    /*Constructor:
+    *   Initializes:
+    *       rawStats: as a generic ArrayList
+    *       numOfPlayers: to input parameter players*/
     public GameFacilitator(int players) {
-        this.winCount = new int[4];
         this.rawStats = new ArrayList<>();
         this.numOfPlayers = players;
     }
-    public int[] getWinCount() {return this.winCount;}
+    //Accessor methods, mostly self explanatory
     public ArrayList<Object>  getRawStats() {return this.rawStats;}
-
+    public int[] playerSpecificMoves() {
+        return g.getPlayerInfo();
+    }
+    public int gameSpecificMoves() {
+        return g.getTurnCount();
+    }
+    /*games1000 creates a new instance of class game, g, for each of the 1000 games. This ensures randomness and
+    * a clean slate when starting a new game. If it is the 100th, 200th, 300th, ... , 1000th game, then the
+    * board is printed after a player wins it. Then, raw stats is updated with the winning player and the game.*/
     public void games1000(){
         if(numOfPlayers == 1 || numOfPlayers == 2 || numOfPlayers == 3 || numOfPlayers == 4) {
             for(int i = 0; i < 1000; i++){
@@ -33,12 +46,9 @@ public class GameFacilitator{
         }
 
     }
-    public int[] playerSpecificMoves() {
-        return g.getPlayerInfo();
-    }
-    public int gameSpecificMoves() {
-        return g.getTurnCount();
-    }
+    /*Takes the finished game g and winner of the game winner as parameters, gets the number of turns total from the
+    * game and number of moves total of the winning player. The winning player, and the two numeric values are added
+    * to an arrayList, preStats, which is then added to the gameFacilitators rawStats array, updating it.*/
     public void updateRawStats(Game g, Player winner) {
         int turns = g.getTurnCount();
         int moves = winner.getMoves();
@@ -48,7 +58,12 @@ public class GameFacilitator{
         preStats.add(turns);
         this.rawStats.add(preStats);
     }
-
+    /*Takes all the data generated in the class' copy of rawStats and manipulates to return the final array of stats.
+    * The final stats arrayList is an arrayList of four float arrays with three elements each. These numbers
+    * correspond to a players win rate, the average number of moves taken to win, and average number of turns taken
+    * to win. Figuring out which player to attribute statistics to is done via switch statement based on player names
+    * (because the winning player object itself is encapsulated in rawStats, it is accessible here). Returns the
+    * final list for print output in main.*/
     public ArrayList<float[]> calculateFinalStats(){
         ArrayList<float[]> finalStats = new ArrayList<>();
         for(int i = 0; i < 4; i++) {

@@ -63,6 +63,8 @@ public class Game {
         return info;
     }
     //Functions
+    /*Facilitates a game with one player. Player rolls, moves "criticalValue" spaces, updates score,
+     * increments turnCount until win conditions are met. It returns the winning player.*/
     public Player game1() {
         Player A = players.get(0);
         this.turnCount = 0;
@@ -74,6 +76,12 @@ public class Game {
         }
         return A;
     }
+    /*Facilitates a game with two players similarly to how the game with one is played, with minor adjustments in logic.
+    * ( turnCount + 2 )mod 2 decides which player's turn it is (correspondingly, for n player games,
+    * ( turnCount + n )  mod n). Before moving forward, the board checks if the space the player just moved to is
+    * occupied, if not, add score. Otherwise, it sends them back. Also, if the player has reached the final
+    * square, before being sent back, win conditions are checked, and if met, returns the winning player.
+    * The game operates similarly for n players.*/
     public Player game2() {
         Player A = players.get(0);
         Player B = players.get(1);
@@ -346,6 +354,7 @@ public class Game {
         }
         return null;
     }
+    /*Method that takes a number of players as a parameter and calls the corresponding game method, for ease of use.*/
     public Player gameWithPlayers(int numOfPlayers) {
         if (numOfPlayers == 1){
             return this.game1();
@@ -361,7 +370,5 @@ public class Game {
         }
         return null;
     }
-    //TODO add game statistic gatherer
-    //TODO create method to play games 1000 times
 }
 
